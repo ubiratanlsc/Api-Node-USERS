@@ -20,11 +20,7 @@ export class CriarUsuario1645468464866 implements MigrationInterface {
                     name: "email",
                     type: "varchar",
                     isNullable: true
-                },{
-                    name: "created_at",
-                    type: "timestamp",
-                    default: "now()"
-                  }
+                }
             ]
             })
         ,true)

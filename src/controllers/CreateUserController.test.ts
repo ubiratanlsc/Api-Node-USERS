@@ -6,21 +6,22 @@ import { makeMockResponse } from '../utils/mocks/mockResponse'
 describe('CreateUsercontroller', () => {
    
     it('Deve retornar o id do usuário criado', async() => {
-        await createConnection()
+        const connection  = await createConnection()
+        await connection.runMigrations()
         const createUserController = new CreateUserController();
 
         const request = {
             body: {
-                nome: 'Algum Usuário',
+                name: 'Algum Usuário',
                 email: 'email@email.com'
             }
         } as Request
 
         const response = makeMockResponse()
 
-        const result = createUserController.handle(request, response)
+        const result = await createUserController.handle(request, response)
 
-        console.log(result + '           Ok, aqui é o final do result');
+        console.log(result);
         
     })
 
