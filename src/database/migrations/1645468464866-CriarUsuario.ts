@@ -14,7 +14,7 @@ export class CriarUsuario1645468464866 implements MigrationInterface {
                 },
                 {
                     name: "name",
-                    type: 'longtext',
+                    type: 'varchar',
                     isNullable: false,
                 },{
                     name: "email",

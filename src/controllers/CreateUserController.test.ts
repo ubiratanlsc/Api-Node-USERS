@@ -1,11 +1,11 @@
 import  createConnection  from '../database'
-import { CreateUserController } from "./CreateUserController"
+import { CreateUserController } from "./CreateUserController" 
 import { Request } from 'express'
 import { makeMockResponse } from '../utils/mocks/mockResponse'
 
 describe('CreateUsercontroller', () => {
    
-    it('Deve retornar o id do usuário criado', async() => {
+    it('Deve retornar status 201', async() => {
         const connection  = await createConnection()
         await connection.runMigrations()
         const createUserController = new CreateUserController();
@@ -19,9 +19,12 @@ describe('CreateUsercontroller', () => {
 
         const response = makeMockResponse()
 
-        const result = await createUserController.handle(request, response)
+        await createUserController.handle(request, response)
 
-        console.log(result);
+        await connection.query('DELETE FROM usuarios')
+
+        expect(response.state.status).toBe(201)
+
         
     })
 
