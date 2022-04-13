@@ -1,0 +1,27 @@
+import createConnection from '../database'
+import { getConnection } from 'typeorm'
+import {makeMockRequest} from '../utils/mocks/mockRequest'
+import {makeMockResponse} from '../utils/mocks/mockResponse'
+import {GetAllUserController} from './GetAllUserController'
+import {FakeData} from './../utils/mocks/fakeData/fakeData'
+
+describe('GetAllUserController', async () => {
+    beforeAll(async () =>{
+        const connection = await createConnection()
+        connection.runMigrations()
+    })
+
+    afterAll (async () => {
+        const connection =  getConnection()
+        await connection.query('DELETE FROM usuarios')
+        await connection.close()
+    })
+
+    const fakeData = new FakeData();
+
+    it('Deve Retornar Status 200 quando pegar todos os usuarios', async() => {
+        await fakeData.execute()
+
+        const getAllUserController = new GetAllUserController();
+    })
+})
