@@ -5,7 +5,7 @@ import {makeMockResponse} from '../utils/mocks/mockResponse'
 import {GetAllUserController} from './GetAllUserController'
 import {FakeData} from './../utils/mocks/fakeData/fakeData'
 
-describe('GetAllUserController', async () => {
+describe('GetAllUserController',  () => {
     beforeAll(async () =>{
         const connection = await createConnection()
         connection.runMigrations()
@@ -23,5 +23,13 @@ describe('GetAllUserController', async () => {
         await fakeData.execute()
 
         const getAllUserController = new GetAllUserController();
+
+        const request = makeMockRequest({})
+
+        const response = makeMockResponse()
+
+        await getAllUserController.handle(request, response);
+
+        expect(response.state.status).toBe(200)
     })
 })
