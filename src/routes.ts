@@ -1,5 +1,6 @@
 import { Request, Response, Router } from "express";
 import { CreateUserController } from "./controllers/CreateUserController";
+import { DeleteUserController } from "./controllers/DeleteUserController";
 import { GetAllUserController } from "./controllers/GetAllUserController";
 import { UpdateUserController } from "./controllers/UpdateUserController";
 
@@ -8,7 +9,7 @@ const router = Router();
 const createUserController = new CreateUserController();
 const getAllUserController = new GetAllUserController();
 const updateUserController = new UpdateUserController();
-
+const deleteUserController = new DeleteUserController();
 
 
 router.get('/', (request: Request, response: Response) => {
@@ -19,4 +20,5 @@ router.get('/', (request: Request, response: Response) => {
 router.post('/usuarios', createUserController.handle)
 router.get('/usuarios', getAllUserController.handle)
 router.patch('/usuario', updateUserController.handle)
+router.delete('/usuario/:id', deleteUserController.handle)
 export{router}
