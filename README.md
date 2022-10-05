@@ -1,3 +1,2 @@
-# Api-Node-testes
-Projeto voltado para aprendizagem de testes automatizados
-:)
+# Api-Node
+Projeto voltado para vriação de usuário com testes automatizados
